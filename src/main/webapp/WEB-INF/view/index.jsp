@@ -5,6 +5,19 @@
     <title>Accident</title>
 </head>
 <body>
-<h2> ${text} </h2>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">String</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="text" items="${list}">
+    <tr>
+        <td>${text}</td>
+    </tr>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>
