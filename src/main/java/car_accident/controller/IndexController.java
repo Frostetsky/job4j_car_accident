@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class IndexController {
@@ -19,7 +17,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        Collection<Accident> accidents = accidentService.findAllAccident().values();
+        Collection<Accident> accidents = accidentService.findAllAccident();
         model.addAttribute("accidents", accidents);
         return "index";
     }
