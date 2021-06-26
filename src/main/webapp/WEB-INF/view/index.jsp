@@ -24,7 +24,9 @@
         <td>${accident.address}</td>
     </tr>
     </c:forEach>
+
     </tbody>
 </table>
+<input type="button" style="color:#469" value="Добавить инцидиент" onclick="window.location.href = 'create'"/>
 </body>
 </html>

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan("car_accident")
+@ComponentScan(basePackages = "car_accident")
 public class WebConfig {
 
     @Bean
