@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class AccidentMem {
@@ -19,9 +20,17 @@ public class AccidentMem {
         return accidents.values();
     }
 
-    public void save(Accident accident) {
-        long generatedKey = accidents.size() + 1;
-        accident.setId(generatedKey);
-        accidents.putIfAbsent(generatedKey, accident);
+    public void saveOrUpdate(Accident accident) {
+        if (accident.getId() != null) {
+            accidents.put(accident.getId(), accident);
+        } else {
+            long generatedKey = accidents.size() + 1;
+            accident.setId(generatedKey);
+            accidents.putIfAbsent(generatedKey, accident);
+        }
+    }
+
+    public Optional<Accident> findByID(Long id) {
+        return Optional.of(accidents.get(id));
     }
 }

@@ -6,9 +6,9 @@ import car_accident.service.AccidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class AccidentController {
@@ -29,5 +29,12 @@ public class AccidentController {
     public String save(@ModelAttribute("accident") Accident accident) {
         accidentService.saveAccident(accident);
         return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") Long id, Model model) {
+        Optional<Accident> updateAccident = accidentService.findByID(id);
+        updateAccident.ifPresent(accident -> model.addAttribute("accident", accident));
+        return "create";
     }
 }

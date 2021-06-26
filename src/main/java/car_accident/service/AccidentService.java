@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class AccidentService {
@@ -18,5 +18,7 @@ public class AccidentService {
         return accidentMem.findAllAccident();
     }
 
-    public void saveAccident(Accident accident) { accidentMem.save(accident); }
+    public void saveAccident(Accident accident) { accidentMem.saveOrUpdate(accident); }
+
+    public Optional<Accident> findByID(Long id) { return accidentMem.findByID(id); }
 }

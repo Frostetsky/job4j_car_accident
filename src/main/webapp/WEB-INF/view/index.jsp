@@ -13,15 +13,20 @@
         <th scope="col", bgcolor="yellow">Название</th>
         <th scope="col", bgcolor="yellow">Описание</th>
         <th scope="col", bgcolor="yellow">Адресс</th>
+        <th scope="col", bgcolor="yellow">Команды</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="accident" items="${accidents}">
+        <c:url var="update" value="/update">
+            <c:param name="id" value="${accident.id}"/>
+        </c:url>
     <tr>
         <td>${accident.id}</td>
         <td>${accident.name}</td>
         <td>${accident.description}</td>
         <td>${accident.address}</td>
+        <td><input type="button" style="color:#049" value="Обновить" onclick = "window.location.href = '${update}'"/></td>
     </tr>
     </c:forEach>
 
