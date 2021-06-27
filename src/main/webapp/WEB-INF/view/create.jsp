@@ -27,6 +27,12 @@
                 <form:options items="${accidents}" itemLabel="name" itemValue="name" />
             </form:select>
         </tr>
+        <br>
+        <tr>
+            <form:select multiple="true" path="rules">
+                <form:options items="${rules}" itemLabel="name" itemValue="name" />
+            </form:select>
+        </tr>
         <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>

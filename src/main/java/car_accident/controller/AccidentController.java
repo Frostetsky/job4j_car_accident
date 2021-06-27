@@ -2,6 +2,7 @@ package car_accident.controller;
 
 import car_accident.entity.Accident;
 import car_accident.entity.AccidentType;
+import car_accident.entity.Rule;
 import car_accident.service.AccidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,8 @@ public class AccidentController {
         model.addAttribute("accident", accident);
         Collection<AccidentType> accidentsTypes =  accidentService.findAllAccidentTypes();
         model.addAttribute("accidents", accidentsTypes);
+        Collection<Rule> rules = accident.getRules();
+        model.addAttribute("rules", rules);
         return "create";
     }
 
@@ -34,10 +37,12 @@ public class AccidentController {
 
     @GetMapping("/update")
     public String update(@RequestParam("id") Long id, Model model) {
+        Collection<Rule> rules = new Accident().getRules();
         Optional<Accident> updateAccident = accidentService.findByID(id);
         updateAccident.ifPresent(accident -> model.addAttribute("accident", accident));
         Collection<AccidentType> accidentTypes = accidentService.findAllAccidentTypes();
         model.addAttribute("accidents", accidentTypes);
+        model.addAttribute("rules", rules);
         return "create";
     }
 

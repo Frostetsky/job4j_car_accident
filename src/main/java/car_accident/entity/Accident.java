@@ -1,6 +1,8 @@
 package car_accident.entity;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
     private Long id;
@@ -13,7 +15,15 @@ public class Accident {
 
     private AccidentType accidentType;
 
+    private Set<Rule> rules = new LinkedHashSet<>();
+
     public Accident() {
+        int id = 0;
+        for (int i = 1; i <= 3; i ++) {
+            for (int j = 0; j <= 9; j++) {
+                rules.add(new Rule(id++,i + "." + j));
+            }
+        }
     }
 
     public Accident(String name, String description, String address) {
@@ -35,6 +45,15 @@ public class Accident {
         this.description = description;
         this.address = address;
         this.accidentType = accidentType;
+    }
+
+    public Accident(Long id, String name, String description, String address, AccidentType accidentType, Set<Rule> rules) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.accidentType = accidentType;
+        this.rules = rules;
     }
 
     public void setAccidentType(AccidentType accidentType) {
@@ -75,6 +94,14 @@ public class Accident {
 
     public AccidentType getAccidentType() {
         return accidentType;
+    }
+
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
     }
 
     @Override
