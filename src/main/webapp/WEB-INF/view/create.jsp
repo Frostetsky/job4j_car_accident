@@ -23,6 +23,11 @@
             <td><form:input path="address"/></td>
         </tr>
         <tr>
+            <form:select path="accidentType">
+                <form:options items="${accidents}" itemLabel="name" itemValue="name" />
+            </form:select>
+        </tr>
+        <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>
     </table>

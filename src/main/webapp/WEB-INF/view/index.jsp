@@ -13,6 +13,7 @@
         <th scope="col", bgcolor="yellow">Название</th>
         <th scope="col", bgcolor="yellow">Описание</th>
         <th scope="col", bgcolor="yellow">Адресс</th>
+        <th scope="col", bgcolor="yellow">Категория</th>
         <th scope="col", bgcolor="yellow">Команды</th>
     </tr>
     </thead>
@@ -26,6 +27,7 @@
         <td>${accident.name}</td>
         <td>${accident.description}</td>
         <td>${accident.address}</td>
+        <td>${accident.accidentType.name}</td>
         <td><input type="button" style="color:#049" value="Обновить" onclick = "window.location.href = '${update}'"/></td>
     </tr>
     </c:forEach>

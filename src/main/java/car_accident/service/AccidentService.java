@@ -1,6 +1,7 @@
 package car_accident.service;
 
 import car_accident.entity.Accident;
+import car_accident.entity.AccidentType;
 import car_accident.repository.AccidentMem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class AccidentService {
     public Collection<Accident> findAllAccident() {
         return accidentMem.findAllAccident();
     }
+
+    public Collection<AccidentType> findAllAccidentTypes() { return accidentMem.findAllAccidentType(); }
 
     public void saveAccident(Accident accident) { accidentMem.saveOrUpdate(accident); }
 

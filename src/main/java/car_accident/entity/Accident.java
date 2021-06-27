@@ -11,6 +11,8 @@ public class Accident {
 
     private String address;
 
+    private AccidentType accidentType;
+
     public Accident() {
     }
 
@@ -25,6 +27,18 @@ public class Accident {
         this.name = name;
         this.description = description;
         this.address = address;
+    }
+
+    public Accident(Long id, String name, String description, String address, AccidentType accidentType) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.accidentType = accidentType;
+    }
+
+    public void setAccidentType(AccidentType accidentType) {
+        this.accidentType = accidentType;
     }
 
     public Long getId() {
@@ -59,6 +73,10 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getAccidentType() {
+        return accidentType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,11 +85,12 @@ public class Accident {
         return Objects.equals(id, accident.id)
                 && Objects.equals(name, accident.name)
                 && Objects.equals(description, accident.description)
-                && Objects.equals(address, accident.address);
+                && Objects.equals(address, accident.address)
+                && Objects.equals(accidentType, accident.accidentType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, address);
+        return Objects.hash(id, name, description, address, accidentType);
     }
 }
