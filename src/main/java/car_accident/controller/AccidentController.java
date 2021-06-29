@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class AccidentController {
@@ -24,7 +25,8 @@ public class AccidentController {
         model.addAttribute("accident", accident);
         Collection<AccidentType> accidentsTypes =  accidentService.findAllAccidentTypes();
         model.addAttribute("accidents", accidentsTypes);
-        Collection<Rule> rules = accident.getRules();
+        Collection<Rule> rules = accidentService.findAllRulesType();
+        accident.setRules(rules);
         model.addAttribute("rules", rules);
         return "create";
     }
@@ -37,7 +39,7 @@ public class AccidentController {
 
     @GetMapping("/update")
     public String update(@RequestParam("id") Long id, Model model) {
-        Collection<Rule> rules = new Accident().getRules();
+        Collection<Rule> rules = accidentService.findAllRulesType();
         Optional<Accident> updateAccident = accidentService.findByID(id);
         updateAccident.ifPresent(accident -> model.addAttribute("accident", accident));
         Collection<AccidentType> accidentTypes = accidentService.findAllAccidentTypes();

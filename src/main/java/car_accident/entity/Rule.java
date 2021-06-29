@@ -3,7 +3,7 @@ package car_accident.entity;
 import java.util.Objects;
 
 public class Rule {
-    private Integer id;
+    private int id;
 
     private String name;
 
@@ -14,16 +14,16 @@ public class Rule {
         this.name = name;
     }
 
-    public Rule(Integer id, String name) {
+    public Rule(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

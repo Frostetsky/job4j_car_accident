@@ -1,11 +1,11 @@
 package car_accident.entity;
 
-import java.util.LinkedHashSet;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
 public class Accident {
-    private Long id;
+    private long id;
 
     private String name;
 
@@ -15,15 +15,14 @@ public class Accident {
 
     private AccidentType accidentType;
 
-    private Set<Rule> rules = new LinkedHashSet<>();
+    private Collection<Rule> rules;
 
     public Accident() {
-        int id = 0;
-        for (int i = 1; i <= 3; i ++) {
-            for (int j = 0; j <= 9; j++) {
-                rules.add(new Rule(id++,i + "." + j));
-            }
-        }
+
+    }
+
+    public Accident(Collection<Rule> rules) {
+        this.rules = rules;
     }
 
     public Accident(String name, String description, String address) {
@@ -32,14 +31,14 @@ public class Accident {
         this.address = address;
     }
 
-    public Accident(Long id, String name, String description, String address) {
+    public Accident(long id, String name, String description, String address) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.address = address;
     }
 
-    public Accident(Long id, String name, String description, String address, AccidentType accidentType) {
+    public Accident(long id, String name, String description, String address, AccidentType accidentType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -47,7 +46,7 @@ public class Accident {
         this.accidentType = accidentType;
     }
 
-    public Accident(Long id, String name, String description, String address, AccidentType accidentType, Set<Rule> rules) {
+    public Accident(long id, String name, String description, String address, AccidentType accidentType, Collection<Rule> rules) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -60,11 +59,11 @@ public class Accident {
         this.accidentType = accidentType;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -96,11 +95,11 @@ public class Accident {
         return accidentType;
     }
 
-    public Set<Rule> getRules() {
+    public Collection<Rule> getRules() {
         return rules;
     }
 
-    public void setRules(Set<Rule> rules) {
+    public void setRules(Collection<Rule> rules) {
         this.rules = rules;
     }
 
