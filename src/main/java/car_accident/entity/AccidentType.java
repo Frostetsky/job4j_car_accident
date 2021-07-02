@@ -1,9 +1,14 @@
 package car_accident.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "type")
 public class AccidentType {
-    private int idType;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String name;
 
@@ -15,17 +20,12 @@ public class AccidentType {
     }
 
     public AccidentType(int idType, String name) {
-        this.idType = idType;
+        this.id = idType;
         this.name = name;
     }
 
-    public int getId_type() {
-        return idType;
-    }
-
-    public void setId_type(int idType) {
-        this.idType = idType;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Accident accident;
 
     public String getName() {
         return name;
@@ -35,16 +35,32 @@ public class AccidentType {
         this.name = name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Accident getAccident() {
+        return accident;
+    }
+
+    public void setAccident(Accident accident) {
+        this.accident = accident;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccidentType that = (AccidentType) o;
-        return Objects.equals(idType, that.idType) && Objects.equals(name, that.name);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idType, name);
+        return Objects.hash(id, name);
     }
 }

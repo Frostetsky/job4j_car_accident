@@ -7,7 +7,7 @@
     <title>Create Accident</title>
 </head>
 <body>
-<form:form action="save" modelAttribute="accident">
+<form:form action="save" method="post" modelAttribute="accident">
     <table>
         <form:hidden path="id"/>
         <tr>

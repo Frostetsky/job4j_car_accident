@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
@@ -32,11 +33,24 @@ public class AccidentController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("accident") Accident accident) {
+    public String save(@ModelAttribute Accident accident, HttpServletRequest request) {
+        accident.setAccidentType(getAccidentType(request));
+        accident.setRules(getRules(request));
         accidentService.saveAccident(accident);
         return "redirect:/";
     }
 
+    @ModelAttribute("accident")
+    public AccidentType getAccidentType(HttpServletRequest request) {
+        return (AccidentType) request.getAttribute("accidents");
+    }
+
+    @ModelAttribute("accident")
+    @SuppressWarnings("unchecked")
+    public Collection<Rule> getRules(HttpServletRequest request) {
+        return (Collection<Rule>) request.getAttribute("rules");
+    }
+    
     @GetMapping("/update")
     public String update(@RequestParam("id") Long id, Model model) {
         Collection<Rule> rules = accidentService.findAllRulesType();

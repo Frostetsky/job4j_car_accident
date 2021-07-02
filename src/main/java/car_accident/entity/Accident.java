@@ -1,10 +1,16 @@
 package car_accident.entity;
 
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
@@ -13,8 +19,11 @@ public class Accident {
 
     private String address;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "accidenttype_id")
     private AccidentType accidentType;
 
+    @OneToMany(mappedBy = "accident")
     private Collection<Rule> rules;
 
     public Accident() {
