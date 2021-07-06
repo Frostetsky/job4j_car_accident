@@ -2,8 +2,9 @@ package car_accident.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "accident")
@@ -19,12 +20,15 @@ public class Accident {
 
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "accidenttype_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private AccidentType accidentType;
 
-    @OneToMany(mappedBy = "accident")
-    private Collection<Rule> rules;
+    @ManyToMany
+    @JoinTable(
+            name = "rule",
+            joinColumns = @JoinColumn(name = "rule_id"),
+            inverseJoinColumns = @JoinColumn(name = "accident_id"))
+    private Collection<Rule> rules = new LinkedHashSet<>();
 
     public Accident() {
 

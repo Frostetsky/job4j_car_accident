@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class AccidentController {
@@ -27,15 +26,12 @@ public class AccidentController {
         Collection<AccidentType> accidentsTypes =  accidentService.findAllAccidentTypes();
         model.addAttribute("accidents", accidentsTypes);
         Collection<Rule> rules = accidentService.findAllRulesType();
-        accident.setRules(rules);
         model.addAttribute("rules", rules);
         return "create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident, HttpServletRequest request) {
-        accident.setAccidentType(getAccidentType(request));
-        accident.setRules(getRules(request));
+    public String save(@ModelAttribute("accident") Accident accident) {
         accidentService.saveAccident(accident);
         return "redirect:/";
     }

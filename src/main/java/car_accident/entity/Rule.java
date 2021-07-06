@@ -1,6 +1,8 @@
 package car_accident.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -24,9 +26,12 @@ public class Rule {
         this.name = name;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "accident_id")
-    private Accident accident;
+    @ManyToMany
+    @JoinTable(
+            name = "accident",
+            joinColumns = @JoinColumn(name = "accident_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
+    private Collection<Accident> accident = new HashSet<>();
 
     public int getId() {
         return id;
@@ -44,11 +49,11 @@ public class Rule {
         this.name = name;
     }
 
-    public Accident getAccident() {
+    public Collection<Accident> getAccident() {
         return accident;
     }
 
-    public void setAccident(Accident accident) {
+    public void setAccident(Collection<Accident> accident) {
         this.accident = accident;
     }
 
